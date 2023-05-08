@@ -12,13 +12,6 @@ import com.example.poo.entidades.User
 abstract class UsuarioDataBase: RoomDatabase() {
     abstract fun usuarioBD(): UsuarioDao
 
-
-
 }
-abstract class CommitDataBase: RoomDatabase() {
-    abstract fun usuarioBD(): UsuarioDao
 
-
-
-}
 

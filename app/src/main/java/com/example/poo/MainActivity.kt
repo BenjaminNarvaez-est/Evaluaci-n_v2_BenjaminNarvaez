@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.example.poo.datos.UsuarioDataBase
+import com.example.poo.entidades.Commit
 import com.example.poo.entidades.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,6 +26,20 @@ class MainActivity : AppCompatActivity() {
 
             for (iterador in listaUsuario ){
                 println("${iterador.idUser},${iterador.nombreComp}, ${iterador.email}, ${iterador.numRepo}")
+            }
+
+        }
+
+        lifecycleScope.launch(Dispatchers.IO){
+            roomDatabase.usuarioBD().insertarCommit(commit= Commit(nombreCommit = "Evaluación Persistencia",
+                descrip = "Evaluacion sumativa de la clase de desarrollo de aplicaciones moviles II",
+                date = "08/05/2023", autor = "Benjamin Narvaez")
+            )
+
+            var listarCommit = roomDatabase.usuarioBD().obtenerCommit()
+
+            for (iterador in listarCommit ){
+                println("${iterador.idCommit},${iterador.nombreCommit}, ${iterador.descrip}, ${iterador.date}, ${iterador.autor}")
             }
 
         }
